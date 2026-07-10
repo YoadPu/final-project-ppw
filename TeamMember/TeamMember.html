@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eMood-in Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="d-flex">
+
+    <aside class="sidebar bg-white border-end d-flex flex-column p-4">
+        <div class="d-flex align-items-center mb-5 gap-2">
+            <i class="bi bi-hexagon-fill fs-3 text-primary"></i>
+            <h4 class="mb-0 fw-bold">eMood-in</h4>
+        </div>
+        <nav class="nav flex-column flex-grow-1">
+            <a class="nav-link px-3 py-2" href="#"><i class="bi bi-grid me-2"></i> Dashboard</a>
+            <a class="nav-link px-3 py-2" href="#"><i class="bi bi-graph-up me-2"></i> History Team</a>
+            <a class="nav-link px-3 py-2 active" href="TeamMember.html"><i class="bi bi-people me-2"></i> Team Member</a>
+            <a class="nav-link px-3 py-2" href="../profile/profile.html"><i class="bi bi-person me-2"></i> My Profile</a>
+        </nav>
+        <div class="mt-auto">
+            <a class="nav-link text-danger px-3 py-2" href="#"><i class="bi bi-box-arrow-right me-2"></i> Log Out</a>
+        </div>
+    </aside>
+
+    <main class="flex-grow-1">
+        <header class="bg-white border-bottom p-4 d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-1 fw-bold">Halo, <span class="text-primary">Adam</span></h5>
+                <small class="text-muted bg-light px-2 py-1 rounded">Tim Alpha #01X2Y9 <i class="bi bi-copy ms-1 cursor-pointer"></i></small>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <span class="badge bg-success rounded-pill px-3 py-2">Sudah Check-in</span>
+                <img src="img/Suryanto.jpg" alt="User" class="avatar-sm">
+            </div>
+        </header>
+
+        <div class="p-4 p-md-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-bold mb-0">Team <span class="text-primary">Alpha</span></h3>
+                <span class="text-muted">5 Orang</span>
+            </div>
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="teamContainer">
+                
+                <div class="col animate-card">
+                    <div class="card card-custom h-100 p-3 text-center">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <img src="img/Suryanto.jpg" alt="Adam Noel" class="avatar-lg mb-3">
+                            <h6 class="fw-bold mb-2">Adam Noel</h6>
+                            <span class="badge mood-happy rounded-pill px-3 mb-3">Happy</span>
+                            <div class="mt-auto d-flex flex-wrap justify-content-center">
+                                <span class="tag-pill me-1 mb-1 d-inline-block">#Target Tercapai</span>
+                                <span class="tag-pill me-1 mb-1 d-inline-block">#Istirahat Cukup</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-card">
+                    <div class="card card-custom h-100 p-3 text-center">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <img src="img/Suryanto.jpg" alt="Wahyu Kay" class="avatar-lg mb-3">
+                            <h6 class="fw-bold mb-2">Wahyu Kay</h6>
+                            <span class="badge mood-happy rounded-pill px-3 mb-3">Happy</span>
+                            <div class="mt-auto d-flex flex-wrap justify-content-center">
+                                <span class="tag-pill me-1 mb-1 d-inline-block">#Tugas Jelas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-card">
+                    <div class="card card-custom h-100 p-3 text-center">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <img src="img/Suryanto.jpg" alt="Rama Putra" class="avatar-lg mb-3">
+                            <h6 class="fw-bold mb-2">Rama Putra</h6>
+                            <span class="badge mood-stress rounded-pill px-3 mb-3">Stress</span>
+                            <div class="mt-auto d-flex flex-wrap justify-content-center">
+                                <span class="tag-pill me-1 mb-1 d-inline-block">#Deadline Mepet</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-card">
+                    <div class="card card-custom h-100 p-3 text-center">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <img src="img/Suryanto.jpg" alt="David Tio" class="avatar-lg mb-3">
+                            <h6 class="fw-bold mb-2">David Tio</h6>
+                            <span class="badge mood-neutral rounded-pill px-3 mb-3">Neutral</span>
+                            <div class="mt-auto d-flex flex-wrap justify-content-center">
+                                <span class="tag-pill me-1 mb-1 d-inline-block">#Beban Kerja</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-card">
+                    <div class="card card-custom h-100 p-3 text-center">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <img src="img/Suryanto.jpg" alt="Hayabusa" class="avatar-lg mb-3 grayscale-img">
+                            <h6 class="fw-bold mb-2">Hayabusa</h6>
+                            <span class="badge mood-none rounded-pill px-3 mb-3">Belum Check-in</span>
+                            <div class="mt-auto d-flex flex-wrap justify-content-center">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Mengambil semua elemen kartu yang memiliki class 'animate-card'
+            const cards = document.querySelectorAll('.animate-card');
+            
+            // Memberikan efek animasi berurutan (staggered) dengan jeda waktu
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('show');
+                }, index * 100); // Jeda 100ms antar kartu
+            });
+        });
+    </script>
+</body>
+</html>
