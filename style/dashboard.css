@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+body {
+  background-color: #f8f9fa;
+  font-family: "Poppins", sans-serif;
+}
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+.nav-link {
+  color: #6c757d;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+}
+.nav-link:hover,
+.nav-link.active {
+  background-color: #4285f4;
+  color: white !important;
+}
+.avatar-sm {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Card Customization */
+.card-custom {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  background-color: #ffffff;
+}
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* Simple Chart Bar Mockup */
+.chart-container {
+  height: 180px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #e2e8f0;
+  margin-top: 20px;
+}
+.chart-bar {
+  width: 35px;
+  background-color: #1e293b;
+  border-radius: 20px 20px 0 0;
+}
+.chart-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #64748b;
+  padding: 0 10px;
+}
+
+/* Recommendation Bubbles - Base Style */
+.bubble {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* PENAMBAHAN: Variasi Ukuran Bubble */
+.bubble-lg {
+  width: 75px;
+  height: 75px;
+  font-size: 16px;
+}
+.bubble-md {
+  width: 60px;
+  height: 60px;
+  font-size: 14px;
+}
+.bubble-sm {
+  width: 48px;
+  height: 48px;
+  font-size: 12px;
+}
+
+/* Online indicator */
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #10b981;
+  border: 2px solid white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
