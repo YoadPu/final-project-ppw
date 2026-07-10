@@ -1,0 +1,48 @@
+ body { background-color: #f4f6f9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        /* Sidebar Styles (Reusable) */
+        .sidebar { width: 260px; height: 100vh; position: sticky; top: 0; }
+        .nav-link { color: #6c757d; font-weight: 600; margin-bottom: 0.5rem; border-radius: 8px; transition: all 0.2s;}
+        .nav-link:hover { background-color: #e9ecef; }
+        .nav-link.active { background-color: #4285F4; color: white !important; }
+        .brand-text { color: #00b4d8; font-weight: 800; font-size: 1.5rem; letter-spacing: -0.5px;}
+        
+        /* Profile & Cards Customization */
+        .avatar-huge { width: 180px; height: 180px; object-fit: cover; border-radius: 50%; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        .avatar-sm { width: 40px; height: 40px; object-fit: cover; border-radius: 50%; }
+        .card-custom { border: none; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+        .action-btn { 
+            background: white; border-radius: 12px; padding: 16px 20px; text-decoration: none;
+            color: #333; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            display: flex; justify-content: space-between; align-items: center; transition: 0.2s;
+        }
+        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .action-btn-danger { color: #dc3545; }
+
+        /* Modern Calendar Styles using CSS Grid */
+        .calendar-header { background-color: #1a202c; color: white; border-radius: 8px; padding: 8px; text-align: center; font-weight: 600; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-top: 16px; text-align: center; }
+        .calendar-day-name { font-size: 0.85rem; font-weight: 600; color: #a0aec0; padding-bottom: 8px; }
+        .calendar-day-name.weekend { color: #3182ce; }
+        .calendar-date { 
+            aspect-ratio: 1; display: flex; align-items: center; justify-content: center; 
+            border-radius: 8px; font-weight: 600; font-size: 0.9rem; color: #4a5568;
+        }
+        .date-muted { color: #cbd5e0; }
+        .date-weekend { color: #3182ce; }
+        
+        /* Mood Date Indicators */
+        .mood-happy { background-color: #20c997; color: white; }
+        .mood-stress { background-color: #f56565; color: white; }
+        .mood-neutral { background-color: #ed8936; color: white; }
+
+        /* --- ANIMATION CLASSES --- */
+        .animate-date {
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.3s ease-out, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .animate-date.show {
+            opacity: 1;
+            transform: scale(1);
+        }
