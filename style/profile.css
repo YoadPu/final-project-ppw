@@ -14,23 +14,14 @@ body {
 }
 .nav-link {
   color: #6c757d;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 0.5rem;
   border-radius: 8px;
-  transition: all 0.2s;
 }
-.nav-link:hover {
-  background-color: #e9ecef;
-}
+.nav-link:hover,
 .nav-link.active {
   background-color: #4285f4;
   color: white !important;
-}
-.brand-text {
-  color: #00b4d8;
-  font-weight: 800;
-  font-size: 1.5rem;
-  letter-spacing: -0.5px;
 }
 
 /* Profile & Cards Customization */

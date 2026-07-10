@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+body {
+  background-color: #f8f9fa;
+  font-family: "Poppins", sans-serif;
+}
+
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+.nav-link {
+  color: #6c757d;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+}
+.nav-link:hover,
+.nav-link.active {
+  background-color: #4285f4;
+  color: white !important;
+}
+.avatar-sm {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Card Customization */
+.card-custom {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  background-color: #ffffff;
+}
+
+/* Online indicator */
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #10b981;
+  border: 2px solid white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+/* Calendar Styling */
+.calendar-header-bar {
+  background-color: #1e293b;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px 8px 0 0;
+  padding: 6px 0;
+  margin: 10px 20px 0 20px;
+  text-align: center;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  gap: 12px 0;
+  padding: 20px;
+  font-size: 14px;
+}
+.calendar-day-name {
+  font-weight: 600;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+.day-item {
+  color: #475569; /* Teks default bulan aktif */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  cursor: pointer;
+}
+.day-other-month {
+  color: #cbd5e1; /* Warna pudar untuk bulan sebelum/sesudah */
+}
+.day-weekend {
+  color: #0ea5e9;
+  font-weight: 600;
+}
+.day-active {
+  background-color: #1e293b;
+  color: #ffffff !important;
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  font-weight: bold;
+}
+.calendar-nav i {
+  background-color: #1e293b;
+  color: white;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+.calendar-nav i:hover {
+  background-color: #334155;
+}
