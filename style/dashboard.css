@@ -12,14 +12,11 @@ body {
 }
 .nav-link {
   color: #6c757d;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 0.5rem;
   border-radius: 8px;
-  transition: all 0.2s;
 }
-.nav-link:hover {
-  background-color: #e9ecef;
-}
+.nav-link:hover,
 .nav-link.active {
   background-color: #4285f4;
   color: white !important;
