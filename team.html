@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pulse Project - Team Setup</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f8f9fa;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .main-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 15px 35px rgba(43, 112, 255, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.02);
+      }
+      .toggle-container {
+        background-color: #f1f5f9;
+        border-radius: 30px;
+        padding: 5px;
+        display: inline-flex;
+        margin-bottom: 25px;
+      }
+      .toggle-btn {
+        border: none;
+        background: transparent;
+        padding: 10px 25px;
+        border-radius: 25px;
+        font-weight: 500;
+        color: #64748b;
+        transition: all 0.3s ease;
+      }
+      .toggle-btn.active {
+        background-color: #4382ff;
+        color: white;
+        box-shadow: 0 4px 10px rgba(67, 130, 255, 0.3);
+      }
+      .inner-box {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+      }
+      .code-input {
+        width: 50px;
+        height: 60px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 600;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        background-color: #f8fafc;
+        margin: 0 5px;
+      }
+      .code-input:focus {
+        border-color: #4382ff;
+        outline: none;
+        background-color: #fff;
+      }
+      .btn-brand {
+        background-color: #4382ff;
+        color: white;
+        border-radius: 10px;
+        padding: 12px;
+        font-weight: 500;
+        width: 100%;
+        border: none;
+      }
+      .btn-brand:hover {
+        background-color: #225ce6;
+        color: white;
+      }
+      .form-control-custom {
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 12px 16px;
+      }
+      .form-control-custom:focus {
+        border-color: #4382ff;
+        outline: none;
+        background-color: #fff;
+      }
+
+      /* Hide sections dynamically */
+      .d-none-custom {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-card text-center">
+      <h3 class="fw-bold mb-2">Satu langkah lagi!</h3>
+      <p class="text-muted small mb-4">
+        Kamu mau bergabung ke tim yang sudah ada atau membuat baru?
+      </p>
+
+      <div class="toggle-container">
+        <button
+          class="toggle-btn active"
+          id="btnGabung"
+          onclick="switchTab('gabung')"
+        >
+          Gabung Tim
+        </button>
+        <button class="toggle-btn" id="btnBuat" onclick="switchTab('buat')">
+          Buat Tim
+        </button>
+      </div>
+
+      <div id="sectionGabung" class="inner-box">
+        <h6 class="fw-bold mb-3">Masukkan Kode Tim</h6>
+        <div class="d-flex justify-content-center mb-4">
+          <input
+            type="text"
+            class="code-input"
+            maxlength="1"
+            onkeyup="moveToNext(this, 'code2')"
+            id="code1"
+          />
+          <input
+            type="text"
+            class="code-input"
+            maxlength="1"
+            onkeyup="moveToNext(this, 'code3')"
+            id="code2"
+          />
+          <input
+            type="text"
+            class="code-input"
+            maxlength="1"
+            onkeyup="moveToNext(this, 'code4')"
+            id="code3"
+          />
+          <input
+            type="text"
+            class="code-input"
+            maxlength="1"
+            onkeyup="moveToNext(this, 'code5')"
+            id="code4"
+          />
+          <input type="text" class="code-input" maxlength="1" id="code5" />
+        </div>
+        <button
+          class="btn btn-brand"
+          onclick="window.open('first-pulse.html', '_self')"
+        >
+          Masuk Ruang Tim
+        </button>
+      </div>
+
+      <div id="sectionBuat" class="inner-box d-none-custom">
+        <h6 class="fw-bold mb-3">Buat Tim</h6>
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control form-control-custom"
+            placeholder="Nama Tim Kamu"
+          />
+        </div>
+        <p class="text-muted" style="font-size: 11px">
+          "Sistem akan membuat kode unik untuk tim kamu secara otomatis setelah
+          ini."
+        </p>
+        <button
+          class="btn btn-brand mt-2"
+          onclick="window.open('first-pulse.html', '_self')"
+        >
+          Buat Tim & Masuk
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Fungsi untuk Switch Tab
+      function switchTab(tabName) {
+        const btnGabung = document.getElementById("btnGabung");
+        const btnBuat = document.getElementById("btnBuat");
+        const secGabung = document.getElementById("sectionGabung");
+        const secBuat = document.getElementById("sectionBuat");
+
+        if (tabName === "gabung") {
+          btnGabung.classList.add("active");
+          btnBuat.classList.remove("active");
+          secGabung.classList.remove("d-none-custom");
+          secBuat.classList.add("d-none-custom");
+        } else {
+          btnBuat.classList.add("active");
+          btnGabung.classList.remove("active");
+          secBuat.classList.remove("d-none-custom");
+          secGabung.classList.add("d-none-custom");
+        }
+      }
+
+      // Fungsi Auto-move ke input kode berikutnya
+      function moveToNext(currentElement, nextElementId) {
+        if (currentElement.value.length >= 1) {
+          document.getElementById(nextElementId).focus();
+        }
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

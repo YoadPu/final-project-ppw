@@ -310,7 +310,95 @@
       </div>
     </main>
 
+    <div
+      class="modal fade"
+      id="moodModal"
+      tabindex="-1"
+      aria-labelledby="moodModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+          <div class="modal-header border-0">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body text-center">
+            <div class="mb-3">
+              <img
+                id="moodModalImage"
+                src="assets/emoji/happy mood.png"
+                alt="Mood happy"
+                width="120"
+                class="mx-auto d-block"
+              />
+            </div>
+            <h5 class="modal-title fw-bold" id="moodModalLabel">
+              Mood tersimpan
+            </h5>
+            <p class="mb-0" id="moodModalText">Mood kamu berhasil dicatat.</p>
+          </div>
+          <div class="modal-footer border-0 justify-content-center">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Lihat Dashboard
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const shouldShowModal = "true";
+        // localStorage.getItem("moodSaved") ===
+        if (shouldShowModal) {
+          const mood = localStorage.getItem("lastMood") || "happy";
+          const moodLabel =
+            {
+              happy: "Happy",
+              neutral: "Neutral",
+              stress: "Stress",
+            }[mood] || "Happy";
+          const message =
+            localStorage.getItem("lastMoodMessage") ||
+            "Mood kamu berhasil dicatat.";
+
+          const title = document.getElementById("moodModalLabel");
+          const text = document.getElementById("moodModalText");
+          const image = document.getElementById("moodModalImage");
+
+          text.textContent = `${message} (${moodLabel})`;
+
+          const moodImages = {
+            happy: "assets/emoji/happy mood.png",
+            neutral: "assets/emoji/netral mood.png",
+            stress: "assets/emoji/bad mood.png",
+          };
+
+          image.src = moodImages[mood] || "assets/emoji/happy mood.png";
+          image.alt = `Mood ${moodLabel}`;
+
+          const modal = new bootstrap.Modal(
+            document.getElementById("moodModal"),
+          );
+          modal.show();
+        }
+
+        localStorage.removeItem("moodSaved");
+        localStorage.removeItem("lastMood");
+        localStorage.removeItem("lastMoodMessage");
+        localStorage.removeItem("lastMoodTags");
+      });
+    </script>
   </body>
 </html>

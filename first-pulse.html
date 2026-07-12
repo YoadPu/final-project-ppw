@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pulse — Mood Check-in</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-light d-flex align-items-center justify-content-center min-vh-100 p-3"
+  >
+    <div
+      class="card shadow-md rounded-4 border-0 p-4"
+      style="max-width: 460px; width: 100%"
+    >
+      <div class="card-body">
+        <div class="text-center mb-3">
+          <h4 class="fw-bold mb-1">Selamat Bergabung di Alpha!</h4>
+          <p class="text-muted small mb-0">
+            Sebelum mulai, bagaimana perasaanmu saat ini?
+          </p>
+        </div>
+
+        <!-- Face -->
+        <div class="text-center my-4">
+          <img
+            id="faceEmoji"
+            class="img-fluid mx-auto d-block"
+            style="max-width: 180px"
+            src="assets/emoji/happy mood.png"
+            alt="Mood happy"
+          />
+        </div>
+
+        <!-- Mood picker -->
+        <div class="d-flex justify-content-center gap-2 mb-4">
+          <button
+            type="button"
+            class="btn btn-success rounded-pill px-4 fw-semibold active"
+            id="btnHappy"
+            onclick="setMood('happy')"
+          >
+            Happy
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-warning rounded-pill px-4 fw-semibold"
+            id="btnNeutral"
+            onclick="setMood('neutral')"
+          >
+            Neutral
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger rounded-pill px-4 fw-semibold"
+            id="btnStress"
+            onclick="setMood('stress')"
+          >
+            Stress
+          </button>
+        </div>
+
+        <!-- Progress dots -->
+        <div class="d-flex justify-content-center gap-2 mb-4">
+          <div class="progress rounded-pill" style="height: 6px; width: 40px">
+            <div
+              class="progress-bar bg-primary"
+              id="dot0"
+              style="width: 100%"
+            ></div>
+          </div>
+          <div class="progress rounded-pill" style="height: 6px; width: 40px">
+            <div
+              class="progress-bar bg-secondary"
+              id="dot1"
+              style="width: 0%"
+            ></div>
+          </div>
+          <div class="progress rounded-pill" style="height: 6px; width: 40px">
+            <div
+              class="progress-bar bg-secondary"
+              id="dot2"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+
+        <h6 class="fw-semibold text-center mb-3" id="question">
+          Apa yang bikin semangat?
+        </h6>
+
+        <div
+          class="d-flex flex-wrap justify-content-center gap-2 mb-4"
+          id="tagGrid"
+        ></div>
+
+        <button
+          type="button"
+          class="btn btn-primary w-100 rounded-3 fw-semibold"
+          onclick="saveMood()"
+        >
+          Simpan Mood
+        </button>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div
+      class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3"
+    >
+      <div
+        id="saveToast"
+        class="toast align-items-center text-bg-dark border-0"
+        role="alert"
+      >
+        <div class="d-flex">
+          <div class="toast-body" id="toastBody">Mood disimpan</div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const data = {
+        happy: {
+          image: "assets/emoji/happy mood.png",
+          question: "Apa yang bikin semangat?",
+          tags: [
+            "#Target Tercapai",
+            "#Tugas Jelas",
+            "#Tim Solid",
+            "#Istirahat Cukup",
+            "#Lingkungan Nyaman",
+          ],
+          tagOutline: "btn-outline-success",
+        },
+        neutral: {
+          image: "assets/emoji/netral mood.png",
+          question: "Bagaimana situasimu?",
+          tags: [
+            "#Rutinitas",
+            "#Menunggu Review",
+            "#Butuh Tantangan",
+            "#Observasi",
+          ],
+          tagOutline: "btn-outline-warning",
+        },
+        stress: {
+          image: "assets/emoji/bad mood.png",
+          question: "Apa hambatan utamamu?",
+          tags: [
+            "#Beban Kerja",
+            "#Deadline Mepet",
+            "#Masalah Teknis",
+            "#Kurang Tidur",
+            "#Masalah Pribadi",
+            "#Miskomunikasi",
+          ],
+          tagOutline: "btn-outline-danger",
+        },
+      };
+
+      const moodButtons = {
+        happy: {
+          id: "btnHappy",
+          solid: "btn-success",
+          outline: "btn-outline-success",
+        },
+        neutral: {
+          id: "btnNeutral",
+          solid: "btn-warning",
+          outline: "btn-outline-warning",
+        },
+        stress: {
+          id: "btnStress",
+          solid: "btn-danger",
+          outline: "btn-outline-danger",
+        },
+      };
+
+      const dotIndex = { happy: 0, neutral: 1, stress: 2 };
+      let currentMood = "happy";
+      let selectedTags = new Set();
+
+      function renderTags(mood) {
+        const grid = document.getElementById("tagGrid");
+        grid.innerHTML = "";
+        selectedTags = new Set();
+        data[mood].tags.forEach((tag) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = `btn btn-sm ${data[mood].tagOutline} rounded-pill`;
+          btn.textContent = tag;
+          btn.onclick = () => {
+            btn.classList.toggle("active");
+            if (btn.classList.contains("active")) selectedTags.add(tag);
+            else selectedTags.delete(tag);
+          };
+          grid.appendChild(btn);
+        });
+      }
+
+      function saveMood() {
+        localStorage.setItem("moodSaved", "true");
+        localStorage.setItem("lastMood", currentMood);
+        localStorage.setItem("lastMoodMessage", "Mood berhasil disimpan!");
+        localStorage.setItem("lastMoodTags", JSON.stringify([...selectedTags]));
+        window.location.href = "dashboard.html";
+      }
+
+      function setMood(mood) {
+        currentMood = mood;
+
+        // mood buttons
+        Object.keys(moodButtons).forEach((m) => {
+          const btn = document.getElementById(moodButtons[m].id);
+          btn.classList.remove(
+            moodButtons[m].solid,
+            moodButtons[m].outline,
+            "active",
+          );
+          btn.classList.add(
+            m === mood ? moodButtons[m].solid : moodButtons[m].outline,
+          );
+          if (m === mood) btn.classList.add("active");
+        });
+
+        // face
+        const face = document.getElementById("faceEmoji");
+        face.src = data[mood].image;
+        face.alt = `Mood ${mood}`;
+
+        // dots
+        [0, 1, 2].forEach((i) => {
+          const dot = document.getElementById("dot" + i);
+          dot.style.width = i === dotIndex[mood] ? "100%" : "0%";
+          dot.className = `progress-bar ${i === dotIndex[mood] ? "bg-primary" : "bg-secondary"}`;
+        });
+
+        document.getElementById("question").textContent = data[mood].question;
+        renderTags(mood);
+      }
+
+      renderTags("happy");
+    </script>
+  </body>
+</html>
