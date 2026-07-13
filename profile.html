@@ -39,7 +39,7 @@
         >
       </nav>
       <div class="mt-auto">
-        <a class="nav-link text-danger px-3 py-2" href="index.html"
+        <a class="nav-link text-danger px-3 py-2 logout-link" href="index.html"
           ><i class="bi bi-box-arrow-right me-2"></i> Log Out</a
         >
       </div>
@@ -87,7 +87,10 @@
                   <span><i class="bi bi-envelope me-2"></i> Ganti Email</span>
                   <i class="bi bi-chevron-right text-muted"></i>
                 </a>
-                <a href="index.html" class="action-btn action-btn-danger">
+                <a
+                  href="index.html"
+                  class="action-btn action-btn-danger logout-link"
+                >
                   <span
                     ><i class="bi bi-box-arrow-right me-2"></i> Log Out</span
                   >
@@ -208,6 +211,14 @@
           setTimeout(() => {
             element.classList.add("show");
           }, index * 20);
+        });
+
+        document.querySelectorAll(".logout-link").forEach((link) => {
+          link.addEventListener("click", (event) => {
+            if (!confirm("Anda yakin ingin logout?")) {
+              event.preventDefault();
+            }
+          });
         });
       });
     </script>

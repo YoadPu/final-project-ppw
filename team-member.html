@@ -39,7 +39,7 @@
         >
       </nav>
       <div class="mt-auto">
-        <a class="nav-link text-danger px-3 py-2" href="index.html"
+        <a class="nav-link text-danger px-3 py-2 logout-link" href="index.html"
           ><i class="bi bi-box-arrow-right me-2"></i> Log Out</a
         >
       </div>
@@ -199,6 +199,14 @@
           setTimeout(() => {
             card.classList.add("show");
           }, index * 100); // Jeda 100ms antar kartu
+        });
+
+        document.querySelectorAll(".logout-link").forEach((link) => {
+          link.addEventListener("click", (event) => {
+            if (!confirm("Anda yakin ingin logout?")) {
+              event.preventDefault();
+            }
+          });
         });
       });
     </script>
